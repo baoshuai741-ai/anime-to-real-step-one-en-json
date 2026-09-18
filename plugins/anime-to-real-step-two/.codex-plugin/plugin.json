@@ -1,13 +1,13 @@
 {
   "name": "anime-to-real-step-two",
-  "version": "0.1.0+codex.20260916103739",
+  "version": "0.1.0+codex.20260918091020",
   "description": "Step two: generate a live-action character image from approved JSON.",
   "author": {
     "name": "Personal workflow"
   },
   "skills": "./skills/",
   "interface": {
-    "displayName": "\u6f2b\u753b\u8f6c\u771f\u4eba\u00b7\u7b2c\u4e8c\u6b65",
+    "displayName": "\u6f2b\u753b\u8f6c\u771f\u4eba\u00b7\u7b2c\u4e8c\u6b65 / Anime to Real \u00b7 Step Two",
     "shortDescription": "\u5df2\u786e\u8ba4 JSON \u8f6c\u5199\u5b9e\u771f\u4eba\u89d2\u8272\u56fe\u3002",
     "longDescription": "\u6839\u636e\u7b2c\u4e00\u6b65 JSON \u4e0e\u53c2\u8003\u56fe\u751f\u6210\u771f\u4eba\u8f6c\u7ed8\u56fe\u3002",
     "developerName": "Personal workflow",

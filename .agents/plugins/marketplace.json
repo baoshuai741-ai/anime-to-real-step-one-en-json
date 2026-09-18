@@ -1,7 +1,7 @@
 {
   "name": "anime-to-real-step-one",
   "interface": {
-    "displayName": "Anime to Real · Step One + Step Two"
+    "displayName": "漫画转真人 / Anime to Real"
   },
   "plugins": [
     {

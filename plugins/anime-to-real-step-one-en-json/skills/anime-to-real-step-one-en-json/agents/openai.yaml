@@ -1,5 +1,5 @@
 interface:
-  display_name: "漫画转真人·第一步（中文描述JSON）"
+  display_name: "漫画转真人·第一步 / Anime to Real · Step One"
   short_description: "先提取视觉事实，再输出中文真人化解释 JSON"
   default_prompt: "使用 $anime-to-real-step-one-en-json 只分析我当前上传的参考图：先建立视觉事实与置信度层，再输出中文真人化解释；保持严格 JSON，negative_prompt 保持固定英文。"
 policy:
