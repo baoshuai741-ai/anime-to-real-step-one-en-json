@@ -1,0 +1,6 @@
+interface:
+  display_name: "第二步"
+  short_description: "已确认 JSON 转写实真人角色图"
+  default_prompt: "Use $anime-to-real-step-two to generate a live-action image from my approved JSON."
+policy:
+  allow_implicit_invocation: false

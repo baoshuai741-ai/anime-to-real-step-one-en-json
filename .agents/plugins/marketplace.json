@@ -1,7 +1,7 @@
 {
   "name": "anime-to-real-step-one",
   "interface": {
-    "displayName": "Anime to Real · Step One"
+    "displayName": "Anime to Real · Step One + Step Two"
   },
   "plugins": [
     {
@@ -9,6 +9,18 @@
       "source": {
         "source": "local",
         "path": "./plugins/anime-to-real-step-one-en-json"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "anime-to-real-step-two",
+      "source": {
+        "source": "local",
+        "path": "./plugins/anime-to-real-step-two"
       },
       "policy": {
         "installation": "AVAILABLE",
