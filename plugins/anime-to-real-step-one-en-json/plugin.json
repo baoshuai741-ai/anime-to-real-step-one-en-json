@@ -1,0 +1,31 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "anime-to-real-step-one-en-json",
+  "version": "0.1.0+codex.20260918084556",
+  "description": "Extract a strict visual-evidence layer from the current anime or illustration reference, then output isolated live-action conversion JSON with Chinese descriptions and fixed English negative prompts.",
+  "author": {
+    "name": "baoshuai741-ai"
+  },
+  "homepage": "https://github.com/baoshuai741-ai/anime-to-real-step-one-en-json",
+  "repository": "https://github.com/baoshuai741-ai/anime-to-real-step-one-en-json",
+  "keywords": [
+    "codex",
+    "anime-to-real",
+    "visual-evidence",
+    "character-dna",
+    "json"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "漫画转真人·第一步（中文描述JSON）",
+        "shortDescription": "先提取视觉事实，再输出中文真人化解释 JSON",
+        "longDescription": "只读取当前参考图，先区分明确可见、高可信判断与无法确认，再在不推翻视觉事实的前提下输出真人化 JSON；中文描述，固定英文负面词，不生成图片。",
+        "developerName": "baoshuai741-ai",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": "使用 $anime-to-real-step-one-en-json 只分析我当前上传的参考图：先建立视觉事实与置信度层，再输出中文真人化解释；保持严格 JSON，negative_prompt 保持固定英文。"
+      }
+    }
+  }
+}
