@@ -1,6 +1,6 @@
 ---
 name: anime-to-real-step-one-en-json
-description: "Analyze the currently uploaded anime, manga, illustration, or virtual-character reference through a strict visual-evidence layer, then return one isolated live-action conversion JSON object with English keys, Chinese descriptions, and fixed English negative prompts. Use only when the user explicitly invokes Step One."
+description: "Analyze the currently uploaded anime, manga, illustration, or virtual-character reference through a strict visual-evidence layer, map the complete face through anatomically constrained human fitting, then return one isolated live-action conversion JSON object with English keys, Chinese descriptions, and fixed English negative prompts. Use only when the user explicitly invokes Step One."
 ---
 
 # Step One | Convert Manga Reference Image to JSON
@@ -27,7 +27,7 @@ The permission order is immutable:
 
 `current source image > visual facts > realism interpretation > final generation`
 
-- A later layer must not overwrite, beautify, normalize, delete or contradict an earlier supported fact.
+- A later layer must not overwrite, beautify, normalize, delete or contradict an earlier supported fact. The literal source observation must remain intact in the evidence record; this does not require an anatomically impossible 2D magnitude to be copied as final human geometry. Every necessary anatomical correction must be explicit, minimal and traceable from source fact to live-action equivalent.
 - The visual-evidence layer has no authority to redesign materials, correct proportions, beautify the face, invent anatomy, complete occlusion, or decide how the final live-action result should look.
 - The realism-translation layer may explain how supported 2D design facts can become physically plausible, but must preserve the recorded visual facts and clearly expose every necessary exception or minimum correction.
 - Step Two must receive both the current source image and the complete Step One JSON. JSON never replaces the source image as visual authority.
@@ -42,13 +42,14 @@ Before writing any live-action rule, create an evidence ledger using exactly thr
 
 For each important observation, record its subject/region, Chinese description, confidence class and visible basis. Where useful, also record whether it is identity-critical. Do not use character names, IP knowledge, web references, cosplay, actors, other frames or prior messages to raise confidence.
 
-The evidence pass must cover, when visible: subject count; apparent age and presentation; face geometry and feature relationships; eye aperture, iris-to-visible-eye ratio, dark-iris/dark-eye proportion and optical highlights; nose and mouth; skin color as depicted; ears and non-human structures; hair base color, silhouette, volume, parting, locks and accessories; body orientation, source-visible proportion, pose, balance and contact; clothing layers, colors and visible construction; accessories and biological structures; composition, camera, environment and lighting.
+The evidence pass must cover, when visible: subject count; apparent age and presentation; head and face outline; brow and orbital placement; eye aperture, iris-to-visible-eye ratio, dark-iris/dark-eye proportion, eyelid relationships and optical highlights; nasal root, bridge, alae and tip; cheek and midface volume; philtrum, lips, mouth corners and jaw opening; chin, jawline, ears and visible asymmetry; skin color as depicted; non-human structures; hair base color, silhouette, volume, parting, locks and accessories; body orientation, source-visible proportion, pose, balance and contact; clothing layers, colors and visible construction; accessories and biological structures; composition, camera, environment and lighting. Raw two-dimensional positions and proportions, including exaggerated absolute facial dimensions, are source evidence rather than the final live-action geometry. At this stage, tag potential identity cues only as feature type, direction, relative trend, visual weight, identity semantics and supported asymmetry; do not set their final size or placement. During interpretation, establish the human anatomical foundation first, then read these tagged cues as Face DNA and map them onto that base. Never promote a stylized absolute size into the final human measurement.
 
 During this pass, never:
 
 - beautify, rejuvenate, feminize/masculinize, normalize or create an AI beauty/influencer face;
 - shrink or enlarge eyes, nose, mouth, ears, jaw, head or body to fit realistic averages;
 - turn painted highlight bands, cel-shading, graphic shadow blocks or outline edges into dye, physical streaks, rigid hair slabs, skin marks or material seams;
+- count every illustrated hair-direction line, separated graphic lock, ribbon highlight or dense flyaway mark as a literal real strand or independently bounded hair strip when it functions only as a cue for flow, softness, motion, layering or airiness;
 - replace illustrated skin, hair or fabric with newly designed realistic materials;
 - add/delete clothing parts, decorations, props, accessories, limbs, ears, tails, horns or other biological structures;
 - infer a hidden back, sole, inner layer, occluded hand, body surface or attachment mechanism.
@@ -59,13 +60,50 @@ For detailed invocation, field meanings, stage boundaries, common errors, backup
 
 ## Source-image lock and layer separation
 
-Separate source-visible design from illustration-only rendering and from realism decisions. `visual_facts` and the detailed top-level `character`, `hair`, `facial_features`, `costume`, `accessories`, `body`, `environment`, `camera` and `lighting` fields hold source evidence. `anime_rendering_artifacts` records 2D depiction mechanisms without treating them as physical design. `character_conversion.character_dna` is a brief identity-critical index, not a copy of all descriptions. `immutable_anchor` locks supported identity-defining facts, not unknowns. `uncertain_or_occluded` and legacy `uncertainty` record unknown, occluded and do-not-infer fields; use `""` or `[]` in ordinary fields where the source is indeterminate. `realism_translation_rules` contains only later-stage translation decisions. Never convert an illustration shading artifact into a physical feature.
+Separate source-visible design from illustration-only rendering and from realism decisions. `visual_facts` and the detailed top-level `character`, `hair`, `facial_features`, `costume`, `accessories`, `body`, `environment`, `camera` and `lighting` fields hold source evidence. `anime_rendering_artifacts` records 2D depiction mechanisms without treating them as physical design. `character_conversion.character_dna` is a brief identity-critical index, not a copy of all descriptions. `immutable_anchor` locks supported identity-defining facts, not unknowns. For the face, `immutable_anchor.face_geometry_and_facial_relationships` preserves source evidence, identity-bearing directions, ordering, relative tendencies and supported asymmetry; it must not freeze a literally impossible 2D magnitude as final human geometry. The validated final human geometry belongs in `facial_anatomy_mapping.live_action_identity_lock`. `uncertain_or_occluded` and legacy `uncertainty` record unknown, occluded and do-not-infer fields; use `""` or `[]` in ordinary fields where the source is indeterminate. `realism_translation_rules` contains only later-stage translation decisions. Never convert an illustration shading artifact into a physical feature.
 
-Hair Design DNA includes visible base color, length, parting, bangs, silhouette, volume, curl/straight tendency, major flow, tied structures, distinctive face-framing locks and hair accessories. Preserve identity-defining shapes while noting which geometry requires physically plausible real-hair translation. Painted highlight bands, cel-shading boundaries, graphic light/dark blocks, stylized strand shadows and hard illustrated edges are 2D rendering artifacts: do not treat them as dye, separate real strands or hairstyle structure. Reference fidelity applies to hair design, not illustrated shading. Real-world translation uses plausible growth, gravity, grouping, density, curl and restrained natural specular response; avoid a Cosplay wig appearance.
+## Cross-style stability gate
 
-Large irises, a high dark-eye/iris proportion, strong wet mirror reflection, unusual eye spacing or eye angle may be identity-critical Character DNA when visibly supported. Record the source fact first. The realism layer must reconstruct a physically credible eye without automatically reducing it to a generic adult average, while still prohibiting literal anime eyes or impossible anatomy.
+Apply the same evidence standard before interpreting any source style. Cel shading, painterly rendering, grayscale manga, sparse line art, chibi exaggeration, semi-realistic illustration, 3D/CG-like rendering and heavy color grading may change how evidence is depicted, but they must not change which visible facts count as Character DNA. A broad style label is never enough to justify a character, anatomy, material, camera or lighting decision.
 
-Hair dynamics must be derived from a real physical cause chain rather than copied as frozen anime geometry: scalp attachment and growth direction -> layered locks and strand groups -> density, length, mass, flexibility and styling support -> gravity, head/body motion, inertia, air movement and moisture -> collision and friction with the face, shoulders, body, clothing, accessories and other hair -> the final visible shape. Record the source hairstyle silhouette, directional intent and identity-defining locks separately from the physical translation. If a source shape is feasible through real cutting, braiding, tying, restrained styling product or a visible accessory, retain it. If it cannot physically persist, prescribe only the smallest feasible adjustment that preserves its recognizable direction, volume hierarchy and silhouette intent; never normalize it into an ordinary hairstyle. Do not invent wind, wetness, stiffness, hidden supports or motion that the current image does not support.
+For every identity-critical region, separate the supported design from the depiction mechanism across these axes when visible:
+
+- contour and linework: outlines, hatching, edge accents and graphic separations;
+- geometry and proportion: source-visible relationships versus style-amplified absolute magnitudes;
+- value, shading and highlights: physical form cues versus cel boundaries, painted patches or ribbon highlights;
+- color: supported local color relationships versus global grading, bloom or palette compression;
+- texture and material: visible construction cues versus omitted, simplified or brush-painted surface detail;
+- camera and scene: supported pose, framing, perspective, light direction and atmosphere versus non-photographic projection or rendering conventions.
+
+Record the literal source observation first. Preserve the supported design semantics, route only the depiction mechanism into `anime_rendering_artifacts` and `medium_dna`, and describe any required physical conversion explicitly. Sparse or highly stylized information lowers confidence; it never authorizes generic beauty, default materials, invented anatomy, invented lens behavior or invented lighting. If design and depiction cannot be separated, keep the item ambiguous and do not discard or positively translate it.
+
+**Face Foundation First.** After the evidence ledger is complete, establish an apparent-age-appropriate human facial base before deciding final geometry: cranial and facial bones, brow and orbital cavities, eyeballs and eyelids, nasal bones and cartilage, zygomatic support, maxilla and mandible, facial muscles, fat compartments and other soft tissues must form one physically coherent head. Then map source Face DNA—feature type, direction, relative trend, visual weight, identity semantics and supported asymmetry—onto that base. The source's stylized absolute dimensions remain evidence only; they never become the geometric foundation.
+
+**Skin Structure First.** Realistic skin is a regional biological and optical system, not a smooth color layer with added pore noise. The live-action interpretation must use natural fine vellus hair, region-dependent pores and microtexture, local roughness and sebum differences, subsurface blood coloration, only very faint anatomically appropriate vascular influence, subsurface scattering, and angle-dependent changes in texture contrast, highlight shape and reflectance. Never manufacture discrete veins, redness, blemishes or dirt that are not visible source facts. Avoid uniform pores, uniform sharpening, uniform reflectance, plastic, wax, porcelain or ceramic skin, and beauty-filter smoothing.
+
+**Hair Intent First.** Hair Design DNA includes visible base color, length, parting, bangs, silhouette, volume hierarchy, curl/straight tendency, major flow, tied structures, distinctive face-framing locks, supported flyaway intent and hair accessories. Read illustrated lines and separated shapes as visual language for flow, softness, movement, layering and airiness before treating them as physical structure. Preserve the hairstyle outline, length, parting, bangs, main direction, volume hierarchy, key face-framing locks and the intended fluid/soft character, while actively weakening illustration-only over-segmentation, hard strip boundaries, ribbon-like highlight bands and densely drawn flyaway marks. Real-world translation must form continuous, natural, soft hair masses with plausible growth, gravity, density, restrained strand variation and natural specular response; it must not become a wig, row-by-row or strip-by-strip hair, hard hair plates, plastic hair or CG hair. If design and depiction cannot be separated confidently, record the ambiguity and do not discard it.
+
+Large irises, a high dark-eye/iris proportion, strong wet mirror reflection, unusual eye spacing or eye angle may be identity-critical source evidence when visibly supported. Record the literal source fact first, but do not treat a non-human absolute magnitude as an immutable live-action measurement. Preserve the identity semantics—eye shape, angle, spacing tendency, gaze, color, expression and relative prominence—then fit the eyeballs, orbits, eyelids, iris exposure and surrounding tissue to the closest apparent-age-appropriate humanly feasible result. Human anatomy is a hard boundary for final geometry; a generic average or beauty-template face has no authority to replace the source identity.
+
+## Facial structure analysis and anatomically constrained live-action fitting
+
+Run this pipeline only after the visual-evidence ledger is complete:
+
+`source-visible evidence -> feature topology -> pose and perspective normalization -> human anatomical foundation -> Face DNA mapping -> muscle, soft-tissue and skin response -> identity verification -> live-action identity lock`
+
+This is facial structure analysis and anatomically constrained reconstruction, not biometric identification. Never match the character to a real-person database, celebrity, actor, demographic stereotype, beauty ideal, golden ratio or generic average face.
+
+1. **Source feature topology:** Map the visible relationships among the head/face outline, forehead and brow, bony orbital region, eyes and eyelids, nose, cheekbones and midface, philtrum and mouth, chin and jaw, ears, and supported left-right asymmetry. Record visible positions, directions, overlap and relative tendencies in a head-local relationship map. Do not convert them yet.
+2. **Pose and perspective normalization:** Explain how head yaw, pitch, roll, expression, foreshortening, lens perspective and cropping affect the visible positions. Normalize relationships only to reason about structure; never invent a frontal face, hidden landmark or unseen side.
+3. **Human anatomical foundation:** Before setting the final size or placement of any feature, establish the closest plausible human skull and facial-bone base, orbital cavities, eyeball/eyelid system, nasal bone/cartilage support, zygomatic structure, maxilla, mandible, facial muscles, fat compartments and other soft tissues appropriate to the source-supported apparent age. All features must share this coherent support and mutual depth/occlusion system. Human anatomical feasibility constrains final absolute geometry, but it must not authorize beautification or generic normalization.
+4. **Face DNA mapping and identity-semantic preservation:** Map the source's feature type, directional character, relative trend, visual weight, distinctive relationship, supported asymmetry, gaze and expression onto the human foundation. These semantics, rather than literal 2D scale, determine the closest identity-preserving result. When a 2D magnitude is impossible, apply only the minimum correction required for a real human face and state which identity cue survives.
+5. **Muscle, soft-tissue and skin response:** Interpret supported expression through coordinated brows, eyelids, eyes, cheeks, nose, lips, jaw, neck and visible skin compression/stretch. Use FACS-compatible visible-action language when useful, but do not guess Action Units that the image cannot support. Texture follows structure and motion; it cannot conceal incorrect geometry.
+6. **Two separate locks:** `live_action_identity_lock` stores the stable, validated human face structure after fitting. `shot_expression_lock` stores the current expression, gaze, eyelid state, mouth/jaw action and temporary soft-tissue deformation. Never make a transient expression deformation part of permanent identity geometry.
+7. **Explicit correction record:** For every non-human or ambiguous source magnitude that requires adjustment, pair the source observation with its closest humanly feasible result and the identity cue that must survive. Put unresolved regions in uncertainty rather than forcing a fit.
+
+The priority rule is fixed: the source image is authoritative about what is visibly drawn; human anatomy is authoritative about what final human geometry can physically be; source identity semantics determine the closest plausible mapping; beauty averages have no authority. Lock the face only after the anatomical fit and identity verification pass.
+
+Hair dynamics must be derived from Hair Intent First and a real physical cause chain rather than copied as frozen anime geometry: scalp attachment and growth direction -> coherent layered flow and restrained strand groups -> density, length, mass, flexibility and supported styling -> gravity, head/body motion, inertia, supported air movement or moisture -> collision and friction with the face, shoulders, body, clothing, accessories and other hair -> the final continuous visible shape. Treat repeated 2D linework as directional encoding, not strand count. Record the source hairstyle silhouette, major flow, volume hierarchy and identity-defining face-framing locks separately from illustration-only segmentation. If a source shape is feasible through real cutting, braiding, tying, restrained styling product or a visible accessory, retain it. If it cannot physically persist, prescribe only the smallest feasible adjustment that preserves its recognizable direction, soft/fluid character, volume hierarchy and silhouette intent; never normalize it into an ordinary hairstyle. Do not invent wind, wetness, stiffness, hidden supports, motion or extra flyaways that the current image does not support, and do not translate every drawn split into a hard lock, strip or hair plate.
 
 `natural_optical_rendering` must specify high resolution through real structural information and lens behavior. High resolution != oversharpening. Avoid excessive clarity, micro-contrast, crispy edges, sharpening halos, exaggerated pores, hyper-defined hair strands, uniform sharpness and artificial fabric-fiber emphasis. Skin, hair and materials must remain naturally resolved, with focal-plane detail and gentle optical roll-off.
 
@@ -77,18 +115,34 @@ The character's gender, apparent age, race/species, skin color, facial-feature c
 
 - Fictional characters must be presented as original real-life human interpretations and must not imitate real celebrities, actors, or real individuals.
 - Use realistic skeletal structure, joints, muscles, soft tissue, hands, feet, and body proportions appropriate to the identity and apparent age shown in the original artwork. Record the original artwork's visible body proportions as source facts, but set the live-action target to the fixed literal `9 head body proportion` regardless of the source ratio. This is the user-authorized proportion exception to source fidelity. Keep natural anatomy, apparent-age and identity cues, pose, camera and composition; do not stretch limbs, deform joints or invent obscured body details.
-- A two-dimensional face must be reconstructed as realistic three-dimensional facial anatomy: the brow ridge, eye sockets, nasal root, nasal alae, cheekbones, cheek soft tissue, philtrum, lips, chin, and jaw must all have natural volume, thickness, and mutual occlusion relationships. Preserve the original artwork's face shape, facial-feature proportions, placement, and overall character while avoiding mechanical reproduction of a flat two-dimensional appearance.
+- A two-dimensional face must be reconstructed on a real human foundation first: cranial and facial bones, brow ridge and eye sockets, eyeballs and eyelids, nasal bones and cartilage, nasal alae, cheekbones, maxilla, mandible, facial muscles, facial fat, cheek and perioral soft tissues, philtrum, lips, chin, jaw and ears must form one supported three-dimensional system. Only then map the original artwork's Face DNA—feature types, ordering, directions, relative trends, visual weights, identity semantics and supported asymmetry—onto that base. Do not mechanically preserve a flat or anatomically impossible 2D absolute magnitude; route it through `facial_anatomy_mapping` and apply only the closest plausible human result.
 - Every visible expression, gesture and full-body pose must be interpreted through a real biomechanical cause chain: intention and action -> skeletal alignment and joint range -> active and opposing muscle tension -> tendon and soft-tissue displacement -> skin compression or stretch -> balance, weight transfer, contact forces and secondary motion. Preserve the source-visible emotion, expression intensity, gaze, gesture, pose direction and silhouette intent. When literal anime geometry is not humanly achievable, specify only the smallest anatomically feasible translation; do not replace it with a different emotion, neutral pose or generic body language, and do not invent hidden anatomy or unsupported muscle definition.
-- Skin must use regional realism: different facial regions should exhibit different pore visibility, microtexture, roughness, localized color variation, subsurface blood coloration, and reflectivity. These differences must follow the visible skin color in the original artwork and realistic photographic logic rather than appearing as a uniform layer of pore noise or a filter.
+- Skin must use real biological structure and regional optical realism: natural fine vellus hair; different pore visibility and microtexture across the forehead, glabella, nose, cheeks, eye area, mouth area and lips; local roughness and sebum variation; subsurface blood coloration; only very faint, anatomically appropriate vascular influence in plausible thin-skin regions; and believable subsurface scattering. Texture contrast, highlights and reflectance must change with region and light angle. These differences follow the source-visible skin color and photographic logic, never a uniform pore layer, uniform sharpening or global filter. Do not create plastic, wax, porcelain or ceramic skin, beauty-filter smoothing, generalized redness, explicit unsupported veins, blemishes or dirt.
+- Hair must follow Hair Intent First: preserve silhouette, length, parting, bangs, main flow, volume hierarchy, key face-framing locks and the intended soft, fluid, airy character, while treating excessive illustrated splits, hard strip boundaries, ribbon highlights and dense drawn flyaways as depiction cues rather than a literal strand inventory. The real result must be continuous, naturally grouped and softly resolved; avoid a wig, individually separated rows/strips, hard hair plates, plastic hair, CG hair and root-by-root over-definition.
 - Lighting must preserve realistic structural facial shadows. Fill light may only control contrast and must not flatten the natural depth relationships of the eye sockets, nasal alae, cheekbones, corners of the mouth, or jaw.
 - Clothing must preserve the structure, colors, layering, and decorative placement visible in the original image and translate them into realistic, wearable, manufacturable materials and construction.
-- Record the source-visible body ratio in `body.source_visible_proportion` when observable, or `""` when not. Do not put a conflicting source ratio into `immutable_anchor.body_proportions`; that anchor may lock only body traits other than the overridden ratio. `body.proportion` carries the fixed target literal `9 head body proportion`. Extreme facial-skin realism means genuine camera-resolved skin, not extra pores, scars, freckles or oversharpening. The final target is hyperrealistic photographic realism, while all source-visible identity and facial relationships stay locked. The following fixed rules must be fully expressed only within `character_conversion.realism_foundation`. `character`, `facial_features`, `lighting`, and `visual_translation_rules` must contain only observations from the currently uploaded original artwork and their corresponding specific translations, without repeating the same general rules.
+- Record the source-visible body ratio in `body.source_visible_proportion` when observable, or `""` when not. Do not put a conflicting source ratio into `immutable_anchor.body_proportions`; that anchor may lock only body traits other than the overridden ratio. `body.proportion` carries the fixed target literal `9 head body proportion`. Extreme facial-skin realism means genuine camera-resolved skin, not extra pores, scars, freckles or oversharpening. The final target is hyperrealistic photographic realism, while all source-visible identity and facial relationships stay locked. The complete positive foundation rules must be defined only within `character_conversion.realism_foundation`. For enforcement, only `character.appearance.skin.avoid` and `hair.avoid` may mirror concise rejection labels drawn from those foundations; they must not invent source facts or create a second translation system. All other content in `character`, `facial_features`, `lighting`, and `visual_translation_rules` must contain only observations from the currently uploaded original artwork and their corresponding specific translations, without repeating the same general rules.
+
+## Medium translation analysis | additive Step One layer
+
+After the evidence ledger, add `character_conversion.medium_translation_analysis` without removing or renaming any existing field. Keep all six arrays present, using `[]` when no item is supported. This layer classifies existing evidence; it does not create new visual facts. Each populated entry is a concise Chinese description that names the affected region, the visible basis or supported rendering artifact, its confidence class, the design meaning that survives, and the required treatment; include the controlling current reference from `reference_roles` when multiple images are assigned. Do not use a style name by itself as evidence. Never promote `high_confidence_inference` to `clearly_visible`; never place `cannot_confirm` content in a positive preserve, translate, discard or equivalent instruction. Unknowns remain in `uncertain_or_occluded` and `uncertainty`.
+
+- `character_dna`: identity-bearing source design from `visual_facts` and the existing `character_dna`; do not place drawing technique here.
+- `medium_dna`: 2D depiction mechanisms from `anime_rendering_artifacts`, such as outlines, cel-shading boundaries, painted highlights, repeated hair-direction strokes, graphic lock separations and ribbon-like hair highlights, not physical hair dye, separate real strands, skin marks or garment details.
+- `preserve_features`: visible identity semantics, humanly feasible face relationships, hair-design intent, costume structure, color hierarchy, accessories, pose and other supported anchors that must survive; align with `immutable_anchor`. For the face, preserve feature type, order, direction, relative tendency, visual weight, identity semantics and supported asymmetry, not an impossible absolute size. For hair, preserve silhouette, length, parting, bangs, major flow, volume hierarchy, key face-framing locks and supported softness/fluidity/airiness rather than every drawn split.
+- `translate_features`: only supported features whose 2D representation needs a physically feasible anatomy, material, hair or optical equivalent; preserve the underlying design and allow only the minimum necessary conversion. Any source facial magnitude outside plausible human anatomy belongs here and in `facial_anatomy_mapping.minimum_anatomical_corrections`, paired with the identity semantics that must survive. Hair entries must translate depiction lines into coherent real flow and natural grouping, not one-to-one physical strips. The existing fixed `9 head body proportion` exception remains explicit and does not authorize changes to other DNA.
+- `discard_features`: only proven illustration-only marks that must not survive as literal physical marks or boundaries. This can include confirmed excess hair segmentation or painted ribbon highlights as physical structure, but never the supported hairstyle intent beneath them. Never discard a supported character feature, accessory, seam, color area, prop or uncertain detail.
+- `real_world_equivalents`: one-to-one Chinese mapping from each `translate_features` item to its closest plausible physical result. Do not add wear, sweat, dirt, flyaways, makeup, materials or unseen construction without evidence.
+
+When an item could be both design and depiction, preserve the supported design and classify only its rendering artifact as medium DNA; if separation is uncertain, record ambiguity and do not discard it. Flat color is not proof of flat material, missing linework is not proof that a structure is absent, painterly texture is not physical surface texture, and 3D/CG shading is not a real-camera lighting instruction. For multiple current images, classify each field under its assigned `reference_roles` authority, never borrow another image's role or historical material. Keep `realism_translation_rules` and legacy `visual_translation_rules` consistent with this added layer. All pre-existing JSON keys, fixed `negative_prompt` entries and foundational rules remain intact.
+
+Populate `character_conversion.facial_anatomy_mapping` after `medium_translation_analysis`. Every populated entry must use Chinese and trace back to current-image evidence. `source_feature_topology` records relationships rather than a beauty judgment and retains stylized absolute sizes only as source facts. `pose_and_perspective_normalization` may explain distortion but may not invent a canonical frontal face. `human_anatomy_fit` first establishes the coherent human skull/orbit/eyeball-eyelid/nasal bone-cartilage/zygomatic/maxilla-mandible/muscle/fat/soft-tissue foundation, then fits the source Face DNA to it. `identity_semantics_preserved` names the feature types, directions, relative trends, visual weights, supported asymmetry and other cues that make the character recognizable. `minimum_anatomical_corrections` records explicit source-to-human deltas without beautification. `muscle_soft_tissue_skin_response` connects expression to physical response and cannot hide a wrong structural fit with texture. `live_action_identity_lock` and `shot_expression_lock` must remain separate. `rejection_checks` lists concrete full-face failures, including literal scaling of non-human dimensions, features floating on one plane, generic beauty normalization, unsupported soft-tissue structure and loss of identity semantics. Use `[]` where evidence is insufficient.
 
 ## Required JSON structure
 
 {
   "prompt_type": "Live-action conversion",
-  "style": "Extreme Photographic Realism + Physically Plausible Lighting + Real-Camera Imaging; authentic human appearance, high-definition smartphone camera capture aesthetic, combination of natural light and high-definition studio lighting, cinematic quality, premium costume design presentation, overall clean, professional, and consistent.",
+  "style": "Extreme Photographic Realism + Physically Plausible Lighting + Real-Camera Imaging; preserve source-supported camera angle, composition, lighting direction, color relationships and atmosphere; use neutral real-camera behavior only where the source does not determine a photographic property.",
   "character_conversion": {
     "source": "",
     "target": "",
@@ -145,18 +199,39 @@ The character's gender, apparent age, race/species, skin color, facial-feature c
       "do_not_infer": []
     },
     "reference_roles": [],
+    "medium_translation_analysis": {
+      "character_dna": [],
+      "medium_dna": [],
+      "preserve_features": [],
+      "translate_features": [],
+      "discard_features": [],
+      "real_world_equivalents": []
+    },
+    "facial_anatomy_mapping": {
+      "source_feature_topology": [],
+      "pose_and_perspective_normalization": [],
+      "human_anatomy_fit": [],
+      "identity_semantics_preserved": [],
+      "minimum_anatomical_corrections": [],
+      "muscle_soft_tissue_skin_response": [],
+      "live_action_identity_lock": [],
+      "shot_expression_lock": [],
+      "rejection_checks": []
+    },
     "realism_translation_rules": [],
     "high_risk_translation_items": [],
     "visual_translation_rules": [],
     "realism_foundation": {
       "source_authority": "当前上传原画是角色 DNA、身份、姿态、镜头、构图、材质与可见光线的唯一视觉权威。固定目标 `9 head body proportion` 是唯一经用户授权的身体比例例外；源图可见比例必须单独作为观察记录，不得为实现九头身而改变其他 DNA。",
       "identity_extraction": "角色的性别呈现、表观年龄、种族或物种、肤色、五官颜色与特殊结构，只能从当前上传原画动态提取；未知信息不得预设或补全。",
-      "presentation_quality": "极致摄影写实、物理可信光线和真实相机成像；呈现原创真实成人面孔、高清智能手机拍摄质感、自然光与高清影棚光结合、电影质感与高品质服装展示，整体干净、专业、一致。",
-      "facial_anatomy_translation": "保留原画脸型、五官比例、位置关系与整体角色特征，把二维脸转译成真实三维结构：眉弓、眼窝、鼻根与鼻翼、颧骨、面颊软组织、人中、嘴唇、下巴和下颌均具有自然体积、厚度、过渡与遮挡关系；禁止生成扁平插画脸。",
+      "presentation_quality": "极致摄影写实、物理可信光线和真实相机成像；呈现原创、不可识别且符合原画表观年龄的人类面孔。原图明确的镜头角度、构图、光线方向、色温、明暗关系与氛围优先；只在原图无法确定的摄影属性上使用中性真实相机行为，不预设手机焦段、影棚布光、电影机或时尚写真风格。",
+      "facial_structure_pipeline": "先完整记录源图可见五官证据、拓扑、姿态与透视影响；进入真人化解释时，先建立符合表观年龄且内部一致的真人头骨与颅面、眼眶、眼球眼睑、鼻骨鼻软骨、颧骨、上颌下颌、面部肌肉、脂肪与软组织基础，再把源图 Face DNA 映射到该基础；随后连接肌肉、软组织与皮肤响应，执行身份回检后分别形成真人身份结构锁与当前镜头表情锁。",
+      "facial_geometry_priority": "源图决定可见事实与身份语义；真人解剖决定最终几何基础与可行范围；Face DNA 只提取五官类型、方向、相对趋势、视觉权重、身份语义与有证据支持的不对称，并决定最接近的真人映射。二维夸张绝对尺寸必须作为源图证据保留，但不得成为最终真人几何基础；审美平均值、黄金比例、网红脸、名人或真实人物模板均无权覆盖。",
+      "facial_anatomy_translation": "先以真人头骨、颅面骨性支撑、眼眶与眼球眼睑、鼻骨鼻软骨、颧骨、上颌下颌、面部肌肉、脂肪和软组织建立可行的三维面部，再映射原画脸型倾向、五官类型、顺序、方向、相对突出趋势、视觉权重、可见不对称与整体身份语义；眉弓、眼窝、眼睑、鼻根鼻翼、颧面、面颊、口周、人中、嘴唇、下巴、下颌和耳部必须具有连续支撑、体积、厚度、过渡与遮挡关系。禁止按二维夸张绝对尺寸直接缩放真人五官，禁止扁平插画脸、通用美人脸或以皮肤纹理掩盖结构错误。",
       "human_biomechanics_translation": "所有可见表情、手势与姿态都必须通过可实现的骨骼排列、关节活动范围、主动肌与拮抗肌协同、肌腱与软组织位移、皮肤形变、平衡、重心转移、接触力和次级运动来解释。保留情绪、表情强度、视线、动作意图、姿态方向与轮廓；若字面动漫几何不可实现，只做最小的解剖可行调整，不得替换为不同表情或通用姿势。",
-      "hair_dynamics_translation": "保留 Hair Design DNA，并以可信的头皮附着、生长方向、分层发束、密度、质量、柔韧性、重力、惯性，以及有画面依据的空气流动或湿度和头发与脸、身体、服装、配饰及其他发束的碰撞摩擦来解释发型。可通过真实修剪、绑扎、编发、克制定型或原图可见支撑实现的造型必须保留；否则只做维持可辨方向、体积层级与轮廓意图所需的最小物理调整。不得普通化设计、虚构环境力或复制僵硬动漫发块。",
-      "regional_skin_realism": "面部皮肤采用极致摄影写实：具有自然分区差异与光学细节的可信真人皮肤，禁止插画、CG、瓷器或塑料外观。额头、眉间、鼻部、面颊、眼周、口周与嘴唇应具有不同的毛孔可见度、微纹理、粗糙度、局部色彩变化、皮下血色与反射率；禁止统一毛孔贴图、统一反射率或磨皮滤镜。整体皮肤细腻、干净、护理良好，不新增色斑、污渍或脏污感。",
-      "structural_lighting": "光线必须保留支撑面部三维结构的自然阴影；补光不得抹平眼窝、鼻翼、颧骨、嘴角或下颌的深度关系，高光只出现在符合真实皮肤行为与骨性突起的位置。"
+      "hair_dynamics_translation": "Hair Intent First：先读取原画头发真正表达的轮廓、长度、分缝、刘海、主要流向、体积层级、关键脸侧发束以及柔顺、飘逸、层次与空气感，再以真实头皮附着、生长方向、连续发流、自然群组、密度、质量、柔韧性、重力、惯性、受证据支持的环境力和碰撞摩擦来实现。二维中的多条走向线、过多分束、条带边界、丝带状高光与密集碎发常是视觉提示，不得逐条物理化；应主动弱化仅属画法的过度分割，同时保留发型设计语义。结果必须自然连续、柔顺、有空气感，禁止假发感、一束一束或一溜一溜的硬分条、硬边发片、塑料发与 CG 发。",
+      "regional_skin_realism": "Skin Structure First：面部皮肤先遵循真实人类皮肤结构与光学，再承载角色可见肤色。额头、眉间、鼻部、面颊、眼周、口周与嘴唇应具有自然细小绒毛、不同的毛孔可见度与微纹理、局部粗糙度和油脂差异、皮下血色、只在合理部位极轻微呈现的皮下血管影响、可信亚表面散射及不同反射率；纹理对比、高光形状和反射必须随部位、曲率与光线角度自然变化。禁止统一毛孔、统一粗糙度、统一锐化、统一反射、塑料皮、蜡像皮、瓷器皮、磨皮滤镜、整体发红、明显无依据血管或用夸张毛孔代替真实感；整体保持细腻、干净、护理良好，不新增色斑、污渍或脏污感。",
+      "structural_lighting": "光线必须保留支撑面部三维结构的自然阴影；补光不得抹平眼窝、鼻翼、颧骨、嘴角或下颌的深度关系。皮肤微纹理对比、绒毛边缘光、高光形状与反射强度必须随入射角、观察角、区域粗糙度和骨性曲率自然变化，不得用统一高光、全脸同等锐度或整体泛红制造真实感。"
     }
   },
   "character": {
@@ -171,7 +246,7 @@ The character's gender, apparent age, race/species, skin color, facial-feature c
       "skin": {
         "material": "",
         "details": [],
-        "avoid": ["skin discoloration", "skin patches", "dirty-looking skin"]
+        "avoid": ["统一毛孔纹理", "统一皮肤粗糙度", "全脸统一锐化", "塑料皮肤", "蜡像皮肤", "瓷器皮肤", "磨皮滤镜", "整体皮肤发红", "无依据的明显皮下血管", "皮肤斑块", "脏污感皮肤"]
       }
     }
   },
@@ -182,7 +257,7 @@ The character's gender, apparent age, race/species, skin color, facial-feature c
     "hair_design_dna": [],
     "illustration_shading_artifacts_rejected": [],
     "real_world_feasible_translation": [],
-    "avoid": []
+    "avoid": ["假发感", "一束一束的硬质发条", "一溜一溜的条带式分束", "硬边发片", "丝带状绘制高光的字面物理化", "密集插画碎发的逐条物理化", "塑料头发", "CG头发", "根根过度定义"]
   },
   "facial_features": {
     "eyes": {
@@ -256,7 +331,7 @@ The character's gender, apparent age, race/species, skin color, facial-feature c
     "visual_style": []
   },
   "camera": {
-    "camera": "高清智能手机相机拍摄质感",
+    "camera": "",
     "lens": "",
     "shot_type": "",
     "camera_angle": "",
@@ -264,19 +339,19 @@ The character's gender, apparent age, race/species, skin color, facial-feature c
     "composition": [],
     "perspective_control": [],
     "depth_of_field": "",
-    "photography_style": ["摄影写实角色", "原创真实成人外观", "高清智能手机拍摄质感", "电影质感", "高品质服装设计展示"]
+    "photography_style": []
   },
   "lighting": {
-    "style": "自然光与高清影棚光结合",
-    "elements": ["自然光", "高清影棚光"],
-    "lighting_behavior": ["保持电影质感", "保留原画可见的光线方向、明暗关系、高光与阴影逻辑"],
+    "style": "",
+    "elements": [],
+    "lighting_behavior": [],
     "color_palette": []
   },
   "quality": {
     "resolution": "",
-    "natural_optical_rendering": ["高分辨率不等于过度锐化", "自然焦平面清晰度与柔和光学衰减", "禁止过度清晰度、微对比、脆硬边缘、锐化光晕、夸张毛孔或根根过度定义的头发"],
-    "render_style": ["摄影写实角色", "原创真实成人外观", "电影质感", "高品质服装设计展示"],
-    "realism_priority": ["细腻真实皮肤纹理", "干净且护理良好、不新增色斑或斑块的皮肤", "整体干净、专业、一致"]
+    "natural_optical_rendering": ["高分辨率不等于过度锐化", "自然焦平面清晰度与柔和光学衰减", "禁止统一锐化、过度清晰度、微对比、脆硬边缘、锐化光晕、夸张毛孔、用整体泛红伪造皮下血色，或把头发逐束切割并根根过度定义"],
+    "render_style": ["极致摄影写实", "物理可信光线", "真实相机成像", "原创且符合原画表观年龄的真实人物外观"],
+    "realism_priority": ["先建立真人颅面基础，再映射 Face DNA 并通过身份回检的完整五官结构", "具有自然绒毛、分区微纹理、皮下血色与真实光学响应的皮肤", "连续柔顺、保留设计意图而不逐条物理化二维线条的真实头发", "干净且护理良好、不新增色斑、斑块或整体发红的皮肤", "整体干净、专业、一致"]
   },
   "negative_prompt": [
     "real celebrity likeness",
@@ -288,6 +363,19 @@ The character's gender, apparent age, race/species, skin color, facial-feature c
     "anime face",
     "anime eyes",
     "oversized eyes",
+    "oversized irises",
+    "excessive sclera exposure",
+    "impossible eyelid geometry",
+    "doll-like facial proportions",
+    "floating eyebrows",
+    "tiny anime nose",
+    "missing nasal structure",
+    "missing philtrum",
+    "extreme pointed chin",
+    "impossibly narrow jaw",
+    "facial feature misalignment",
+    "disconnected facial muscles",
+    "generic average face",
     "cartoon",
     "manga",
     "illustration",

@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "anime-to-real-step-one-en-json",
-  "version": "0.1.0+codex.20260918091020",
-  "description": "Extract a strict visual-evidence layer from the current anime or illustration reference, then output isolated live-action conversion JSON with Chinese descriptions and fixed English negative prompts.",
+  "version": "0.1.0+codex.20260929041537",
+  "description": "Extract strict visual evidence, uncertainty boundaries, and anatomically constrained live-action mappings from the current reference into isolated JSON.",
   "author": {
     "name": "baoshuai741-ai"
   },
@@ -20,7 +20,7 @@
       "interface": {
         "displayName": "漫画转真人·第一步 / Anime to Real · Step One",
         "shortDescription": "先提取视觉事实，再输出中文真人化解释 JSON",
-        "longDescription": "只读取当前参考图，先区分明确可见、高可信判断与无法确认，再在不推翻视觉事实的前提下输出真人化 JSON；中文描述，固定英文负面词，不生成图片。",
+        "longDescription": "只读取当前参考图，分离可见事实、可信推断、无法确认与二维画法，再建立整脸解剖、区域皮肤和发型意图映射；输出中文描述与固定英文负面词的严格 JSON，不生成图片。",
         "developerName": "baoshuai741-ai",
         "category": "Productivity",
         "capabilities": [],

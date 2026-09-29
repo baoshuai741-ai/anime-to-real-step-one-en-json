@@ -1,7 +1,7 @@
 {
   "name": "anime-to-real-step-two",
-  "version": "0.1.0+codex.20260918091020",
-  "description": "Step two: generate a live-action character image from approved JSON.",
+  "version": "0.1.0+codex.20260929041537",
+  "description": "Step two: generate and verify a live-action character image from the same current reference and approved Step One JSON.",
   "author": {
     "name": "Personal workflow"
   },
@@ -13,6 +13,6 @@
     "developerName": "Personal workflow",
     "category": "Productivity",
     "capabilities": [],
-    "defaultPrompt": "Use $anime-to-real-step-two with the reference image and approved Step 1 JSON attached in this message only."
+    "defaultPrompt": "Use $anime-to-real-step-two only with the same reference image and complete approved Step One JSON attached in this message, then verify identity, skin, hair, clothing, composition, and unknown boundaries."
   }
 }

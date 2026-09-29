@@ -1,7 +1,7 @@
 {
   "name": "anime-to-real-step-one-en-json",
-  "version": "0.1.0+codex.20260918091020",
-  "description": "Step one: extract a strict visual-evidence layer from the current reference, then output isolated live-action conversion JSON with Chinese descriptions and fixed English negative prompts.",
+  "version": "0.1.0+codex.20260929041537",
+  "description": "Step one: extract strict visual evidence, uncertainty boundaries, and anatomically constrained live-action mappings from the current reference into isolated JSON.",
   "author": {
     "name": "Personal workflow"
   },

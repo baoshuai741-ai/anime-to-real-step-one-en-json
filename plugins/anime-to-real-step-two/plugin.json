@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "anime-to-real-step-two",
-  "version": "0.1.0+codex.20260918091020",
-  "description": "Generate a photorealistic live-action character image from the same current artwork and its complete approved Step One JSON.",
+  "version": "0.1.0+codex.20260929041537",
+  "description": "Generate and verify a photorealistic live-action character image from the same current artwork and its complete approved Step One JSON.",
   "author": {
     "name": "baoshuai741-ai"
   },
@@ -20,11 +20,11 @@
       "interface": {
         "displayName": "漫画转真人·第二步 / Anime to Real · Step Two",
         "shortDescription": "同一原画与已确认 JSON 生成写实真人图",
-        "longDescription": "第二步必须与第一步交替使用：同时接收同一张当前原画和已确认的完整第一步 JSON，在不改变视觉事实与角色 DNA 的前提下生成写实真人图或最终生成提示词。",
+        "longDescription": "第二步必须与第一步交替使用：同时接收同一张当前原画和已确认的完整第一步 JSON，在不改变视觉事实与角色 DNA 的前提下生成写实真人图，并对身份、皮肤、发型、服装、构图与未知边界逐项验收。",
         "developerName": "baoshuai741-ai",
         "category": "Productivity",
         "capabilities": [],
-        "defaultPrompt": "使用 $anime-to-real-step-two，依据当前附上的原画和已确认的第一步 JSON 生成写实真人图；不得读取旧图或旧 JSON，不得改变视觉事实和角色 DNA。"
+        "defaultPrompt": "使用 $anime-to-real-step-two，只依据当前重新附上的同一张原画和完整已确认的第一步 JSON 生成真人图，并在生成后按身份、皮肤、发型、服装、构图与未知边界逐项验收。"
       }
     }
   }
