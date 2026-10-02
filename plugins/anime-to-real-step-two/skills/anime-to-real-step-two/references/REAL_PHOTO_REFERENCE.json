@@ -1,0 +1,595 @@
+{
+  "schema_version": "1.1.0",
+  "profile_id": "real-photo-physics-20260930",
+  "task_type": "real_photo_reference_profile",
+  "reference_role": "realism_only_not_identity",
+  "language": "zh-CN",
+  "revision": "three-stage-stability-and-garment-20260930",
+  "revision_evidence_note": "保留原10张照片的审计与证据强弱；本次新增服装执行门控属于保守摄影/材质约束，不代表照片能够证明具体纤维、隐蔽构造或数值参数，也未新增照片样本。",
+  "created_from": {
+    "folder": "Private reference collection (source photos not distributed)",
+    "image_count": 10,
+    "readable_count": 10,
+    "unreadable_count": 0,
+    "formats": {
+      "png": 2,
+      "jpeg": 8
+    },
+    "resolution_range_px": {
+      "minimum": [365, 547],
+      "maximum": [1920, 2398]
+    },
+    "important_limitations": [
+      "多张图片存在明显美容修图、降噪、压缩或低分辨率，不能把其平滑皮肤当作微纹理标准。",
+      "部分图片使用直闪、强日光、彩色舞台光或混合色温，只能用于观察光源方向、阴影、高光滚降和材质响应，不能用于复制绝对肤色。",
+      "部分图片带水印、文字或广告叠层，这些元素不属于摄影物理参考。",
+      "牙齿和牙龈几乎没有可靠可见证据，因此本基准不定义具体牙齿形态；第三步只能保留并修正输入图中清楚可见的明显伪影。",
+      "这些图片是摄影物理样本，不是身份、审美、脸型、五官、身体、发型、服装或姿势样本。"
+    ]
+  },
+  "authority_contract": {
+    "highest_visual_authority": "按stage_authority选择当前阶段的视觉输入，不得跨阶段套用",
+    "profile_authority": "仅限真实摄影中的微表面、材质分离、光学响应、锐度层级、噪声结构和可诊断AI伪影",
+    "optional_step_one_json_role": "仅第三步为可选辅助；第二步必须提供完整第一步JSON作为角色文字权威",
+    "stage_authority": {
+      "step_two": {
+        "visual": "当前原始角色参考图及当前明确指定的多图职责",
+        "text": "已批准的完整第一步JSON",
+        "profile": "仅决定受尺度限制的摄影与材质实现，不新增角色或服装设计",
+        "geometry": "仅按第一步明确映射做最小二维到真人转译；本基准不决定脸型、眼睛大小、身体比例或服装形状"
+      },
+      "step_three": {
+        "visual": "当前第二步最终图片",
+        "text": "可选第一步JSON仅作设计辅助约束",
+        "profile": "只诊断并校准现有表面与光学，不改变已建立的几何和设计",
+        "geometry": "VISUAL FREEZE；结构失败报告并停止，不执行第二步的解剖转译"
+      }
+    },
+    "rule_applicability": "修复、保持输入眼球大小及冻结几何等编辑措辞针对第三步，或第二步生成后的局部修正。第二步初次生图只从本基准提取物理表现，并服从第一步已批准的最小转译，不能把二维不可能几何因本基准保持原图措辞而锁死。所有阶段都禁止借基准改变身份或设计。",
+    "must_never_control": [
+      "identity",
+      "face_shape",
+      "facial_feature_type_or_ratio",
+      "body_shape_or_proportion",
+      "pose_or_gesture",
+      "composition_or_crop",
+      "camera_position_or_focal_perspective",
+      "hairstyle_shape_or_color",
+      "clothing_design_or_color",
+      "accessories_or_props",
+      "background_structure_or_content"
+    ],
+    "conflict_rule": "物理基准无权覆盖当前阶段的身份与设计权威。第三步当保持第二步原图一致与提升真实感冲突时，保持原图一致优先；宁可保留轻微AI感，也不得重新设计。",
+    "uncertainty_rule": "不能区分AI伪影与低分辨率、压缩、失焦、运动模糊、妆容或真实修图时，保持原样。"
+  },
+  "source_audit": [
+    {
+      "file": "01.png",
+      "dimensions_px": [956, 1197],
+      "sha256": "76C3D07A3259FC5E32AB8673FFC0CC166AEFF319BC51FEC0562E3DBE0CC1DDC5",
+      "readable": true,
+      "usable_for": ["混合室内光", "玻璃与冷柜反射", "抓绒/棉质表面", "头发发面与少量碎发", "手与物体接触", "前景到背景的信息密度变化"],
+      "not_reliable_for": ["精确毛孔尺度", "绝对肤色", "镜头型号或焦距推断"]
+    },
+    {
+      "file": "02.jpg",
+      "dimensions_px": [1920, 2398],
+      "sha256": "5E132996E54AACF124F00770D0F521A243E90DAED794220E6423E7B5C9CCDECB",
+      "readable": true,
+      "usable_for": ["全身透视连续性", "哑光弹力织物", "混凝土与软垫表面分离", "金属链局部高光", "自然褶皱与重力"],
+      "not_reliable_for": ["面部微纹理", "未修图皮肤", "浅景深标定"]
+    },
+    {
+      "file": "03.jpg",
+      "dimensions_px": [850, 1359],
+      "sha256": "78A33F50F97A28D917EE9539DF40EABD9BEA2EA33AE4706E852409D15A2BA75C",
+      "readable": true,
+      "usable_for": ["硬闪光下的高光与阴影", "深色背景中的头发发面", "棉质针织表面", "侧面轮廓边缘响应"],
+      "not_reliable_for": ["被闪光削弱的肤色细节", "高光区域微纹理", "水印覆盖区域"]
+    },
+    {
+      "file": "04.jpg",
+      "dimensions_px": [387, 516],
+      "sha256": "A57587B0C484F9087CEB77523045A85E08CBCA0931F7D4DB3E18B4D98AD0575A",
+      "readable": true,
+      "usable_for": ["低分辨率下应保留的信息上限", "罗纹织物方向", "金属扣与织物的反射差异"],
+      "not_reliable_for": ["皮肤微纹理", "眼睛微结构", "任何文字叠层", "美容处理后的面部表面"]
+    },
+    {
+      "file": "05.jpg",
+      "dimensions_px": [850, 1339],
+      "sha256": "70E1F037809CD8A4B8A55B7A89771CB197B6060AB0966278EB30C1200F3201BE",
+      "readable": true,
+      "usable_for": ["彩色舞台光的方向一致性", "背光/轮廓光", "长发发组与重力", "皮肤与头发对同一红光的不同响应", "金属饰品点状高光"],
+      "not_reliable_for": ["绝对肤色", "中性白平衡", "暗部精确噪声"]
+    },
+    {
+      "file": "06.jpg",
+      "dimensions_px": [365, 547],
+      "sha256": "2FF7FC131BCAE70B3805585BF8E1CBAF6747F2D0F1A1543884EE3BBB6FC7393E",
+      "readable": true,
+      "usable_for": ["柔和人像光下的发组", "浅色罗纹织物", "焦内与焦外细节上限", "手臂与头发遮挡关系"],
+      "not_reliable_for": ["毛孔", "绒毛", "眼睛精细纹理", "传感器噪声"]
+    },
+    {
+      "file": "07.jpg",
+      "dimensions_px": [496, 619],
+      "sha256": "1200ADDA3238D24DCAD3CAD8806A99267B389E39D41A60C8A0FE80B9B01D390C",
+      "readable": true,
+      "usable_for": ["漫射前光", "长发连续发面", "深色柔软织物的宽高光", "纯色背景中的边缘与碎发"],
+      "not_reliable_for": ["具体纤维类别", "皮肤微纹理", "精确镜头噪声"]
+    },
+    {
+      "file": "08.png",
+      "dimensions_px": [1024, 1024],
+      "sha256": "790581D8D9DAEF6A518206EF6BF592D05EABB27EFD38E4D97593011C010CBD96",
+      "readable": true,
+      "usable_for": ["夜间直闪与环境光并存", "湿地面镜面反射", "玻璃镜片反射", "弹力针织与哑光裤料分离", "深背景信息衰减", "接触阴影"],
+      "not_reliable_for": ["没有闪光影响的自然肤色", "精确浅景深", "透明通道作为摄影证据"]
+    },
+    {
+      "file": "09.jpg",
+      "dimensions_px": [800, 1067],
+      "sha256": "24E865D18A08B0FC7E0739AC24E777A65F5EB4F87F6352C7541C60D63AA2B37D",
+      "readable": true,
+      "usable_for": ["硬日光与室内环境光交界", "高光裁切", "反光石材与金属墙面", "大景深场景", "针织镂空与条纹织物的尺度变化"],
+      "not_reliable_for": ["远距离面部微结构", "被强光压缩的皮肤细节"]
+    },
+    {
+      "file": "10.jpg",
+      "dimensions_px": [800, 1000],
+      "sha256": "656CE74F4883987DD520BD9192CE7FE0ACFFDE5859067F0FA418CC3591CBFC1A",
+      "readable": true,
+      "usable_for": ["夜间闪光", "背景运动/失焦与主体清晰度差异", "薄透光泽织物的叠层", "黑发宽高光", "暖色环境光与闪光混合"],
+      "not_reliable_for": ["未处理皮肤微纹理", "背景细节重建", "具体织物纤维名称"]
+    }
+  ],
+  "evidence_coverage": {
+    "skin_microtexture": "limited",
+    "skin_regional_reflectance": "moderate",
+    "vellus_hair": "limited",
+    "capillary_variation": "limited",
+    "subsurface_scattering_and_highlight_rolloff": "moderate",
+    "hair_grouping_and_surface_continuity": "strong",
+    "eyes_and_eyelids": "moderate_but_often_processed",
+    "lips": "moderate",
+    "teeth_and_gums": "insufficient",
+    "hands_and_contact": "moderate",
+    "fabric_materials": "strong_for_observed_reflectance_classes",
+    "leather": "limited",
+    "glass_and_metal": "moderate",
+    "lighting_and_exposure": "strong",
+    "focus_sharpness_and_depth": "moderate",
+    "sensor_noise": "limited_due_to_processing_and_compression"
+  },
+  "skin": {
+    "micro_texture": {
+      "observable_rule": "微表面细节必须受部位、距离、焦平面、入射角和分辨率共同限制；不能在所有皮肤区域以同一尺度和同一对比度出现。",
+      "diagnostic_signs": ["重复同尺度颗粒覆盖额头、面颊、颈部和四肢", "失焦皮肤仍保留完整高频纹理", "毛孔方向与表面透视无关"],
+      "allowed_correction": ["移除周期性或贴图式颗粒", "只在焦内且分辨率支持的区域恢复低对比、非重复微纹理", "随曲率、透视和景深降低纹理可见度"],
+      "forbidden": ["全脸加毛孔", "全身加统一颗粒", "用锐化或噪点制造皮肤", "新增身份性皮肤标记"],
+      "evidence_strength": "limited"
+    },
+    "regional_difference": {
+      "observable_rule": "额头和鼻部可出现较集中皮脂反射；面颊高光更宽更柔；眼下、口周、颈部和四肢的纹理与色彩变化更弱且尺度不同。",
+      "allowed_correction": ["打破整张脸同一粗糙度", "恢复区域化高光宽度和低对比色差", "保持输入图原有肤色基调"],
+      "forbidden": ["统一粉红", "统一橙色", "全脸同亮度", "改变肤色类别"],
+      "evidence_strength": "moderate"
+    },
+    "vellus_hair": {
+      "observable_rule": "细绒毛只在足够分辨率、侧光或逆光及焦平面支持时局部可见，方向服从皮肤表面与重力，不形成均匀绒毛层。",
+      "allowed_correction": ["仅在已有边缘光和清楚尺度支持时保留少量绒毛"],
+      "forbidden": ["整脸或整臂添加绒毛", "把锐化边缘当绒毛", "在失焦区域生成单根毛发"],
+      "evidence_strength": "limited"
+    },
+    "capillary_and_color_variation": {
+      "observable_rule": "毛细血管和血色变化应低对比、局部、非对称，并受光线和妆容影响；鼻翼、眼下、耳缘或薄组织可能略明显，但不是全脸泛红。",
+      "allowed_correction": ["只在输入图已有色彩证据时恢复轻微局部变化"],
+      "forbidden": ["主动加红血丝", "全脸红润化", "用青红噪点模拟血管"],
+      "evidence_strength": "limited"
+    },
+    "subsurface_scattering": {
+      "observable_rule": "次表面散射表现为明暗交界和耳缘、鼻翼、指尖等薄组织处的柔和暖色过渡；其范围受光源方向限制，不是均匀发光。",
+      "allowed_correction": ["修复硬塑料边界", "在不改变光向和肤色的前提下柔化薄组织色彩过渡"],
+      "forbidden": ["全身红色辉光", "蜡烛般半透明皮肤", "改变既有照明"],
+      "evidence_strength": "moderate"
+    },
+    "oil_and_moisture": {
+      "observable_rule": "皮脂高光集中于受光且较平滑区域，形状服从表面曲率；面颊、颈部和四肢不应共享相同镜面强度。",
+      "allowed_correction": ["缩小连续塑料高光", "恢复不同区域的粗糙度差"],
+      "forbidden": ["整脸油亮", "均匀湿润", "把妆面改成另一种妆面"],
+      "evidence_strength": "moderate"
+    },
+    "highlight_rolloff": {
+      "observable_rule": "皮肤高光从可见颜色和纹理逐步过渡到接近饱和；强闪光可以裁切，但裁切边界仍服从光源、曲率和曝光，不出现贴纸状纯白斑。",
+      "allowed_correction": ["修复断裂或贴片状高光", "保持原有高光面积与曝光关系"],
+      "forbidden": ["重新布光", "恢复过曝区域中不存在的信息", "统一降低所有高光"],
+      "evidence_strength": "strong"
+    }
+  },
+  "hair": {
+    "surface_continuity": {
+      "rule": "大量发丝聚合成连续发面和不同宽度的发组；暗部可以合并，不要求逐丝可见。",
+      "repair": ["消除假发壳和条带式断裂", "在不改轮廓与发流的前提下恢复连续发面"],
+      "forbidden": ["逐条重画所有发丝", "改变发型轮廓或分缝"]
+    },
+    "strand_grouping": {
+      "rule": "发组宽度、密度与方向不完全一致，但共同服从根部方向、原发流、重力、接触和遮挡。",
+      "repair": ["打破明显等宽重复发束", "保留少量焦内单丝和大量聚合发组"],
+      "forbidden": ["把动漫式粗束逐条实体化", "增加不受原发流约束的新发束"]
+    },
+    "flyaway_distribution": {
+      "rule": "碎发数量少、长度和方向不规则，主要出现在轮廓、分缝和运动/摩擦相关位置；不会均匀包围整个头部。",
+      "repair": ["只在人工平滑边缘附近保留极少量碎发"],
+      "forbidden": ["飞发光环", "大量凌乱发丝", "在模糊背景上生成清晰单丝"],
+      "evidence_strength": "moderate"
+    },
+    "gravity_and_contact": {
+      "rule": "发组从头皮根部沿原方向下垂，并在肩、衣物、背部或手臂接触处弯折、分开或堆叠；遮挡顺序连续。",
+      "repair": ["修复穿插、悬浮和错误粘连"],
+      "forbidden": ["改变长度、体积、卷曲类型、风向或遮脸设计"]
+    },
+    "specular_behavior": {
+      "rule": "头发高光沿发组方向形成宽窄变化的连续带，受光源大小、曲率和颜色影响；不是等宽白线或塑料片。",
+      "repair": ["去除金属丝和塑料亮带", "保持发色与现有光向"],
+      "forbidden": ["全头统一亮带", "改变发色或增加不存在的轮廓光"]
+    },
+    "sharpness_hierarchy": {
+      "rule": "焦平面附近可见有限单丝；主体发面保留中频结构；远离焦点、暗部和运动区域自然合并或变软。",
+      "repair": ["降低全头同锐度", "消除每根头发都清楚的超分辨率感"],
+      "forbidden": ["全局锐化", "把原本失焦的头发变清楚"]
+    }
+  },
+  "eyes": {
+    "sclera": {
+      "rule": "巩膜不是纯白平面；亮度受眼睑遮挡、眼球曲率和光向影响，靠近眼角可略暗或暖，但低分辨率下不应强行增加血丝。",
+      "forbidden": ["纯白发光", "主动绘制明显血管", "扩大眼白"]
+    },
+    "iris_and_pupil": {
+      "rule": "虹膜纹理沿瞳孔径向变化但不是规则太阳纹；瞳孔、虹膜颜色和大小必须保持输入图，暗光下细节可自然减少。",
+      "forbidden": ["发光虹膜", "美瞳图案", "更换颜色", "过度锐化纹理"]
+    },
+    "tear_film_and_cornea": {
+      "rule": "泪膜高光是眼睑边缘的窄而不完全连续的湿润反射；角膜高光位置和数量必须与现有光源一致。",
+      "repair": ["修复断裂泪线或复制高光"],
+      "forbidden": ["添加棚拍眼神光", "镜像复制双眼高光", "改变视线"]
+    },
+    "eyelid_thickness": {
+      "rule": "上、下眼睑具有可见厚度与遮挡，睫毛从边缘长出；厚度随视角变化，不能是一条无体积描线。",
+      "repair": ["仅修复明显消失或融化的眼睑边界"],
+      "forbidden": ["改眼型", "改眼距", "提拉眼角", "改变妆容"]
+    },
+    "evidence_strength": "moderate_but_processed"
+  },
+  "mouth_teeth": {
+    "lips": {
+      "rule": "唇纹沿唇部曲率变化，边界局部柔软；湿润高光集中且不完全均匀，口角和闭合线受表情张力控制。",
+      "repair": ["移除塑料整片高光", "修复重复唇纹或硬描边"],
+      "forbidden": ["改变唇形、厚度、开合、唇色或表情", "新增唇纹覆盖"]
+    },
+    "teeth": {
+      "rule": "本数据集证据不足。只在输入图清楚显示牙齿且存在明确融合、重复、纯白无层次或数量错误时做最小修复。",
+      "repair": ["保持原有可见数量、咬合、开口和遮挡，仅修复明确局部伪影"],
+      "forbidden": ["凭空显示牙齿或牙龈", "改变笑容", "统一纯白", "重排牙列"],
+      "evidence_strength": "insufficient"
+    }
+  },
+  "hands": {
+    "anatomy_and_contact": {
+      "rule": "手指长度、关节折叠、掌面软组织、指甲边缘和抓握接触必须连续；物体遮挡与衣物牵拉应和手势一致。",
+      "repair": ["只修复不改变既有手指数、关节、轮廓、动作或接触关系的表面边界与重复指甲纹理"],
+      "structural_failure": "额外手指、错误关节、需重排手指或改变轮廓的融合及悬浮接触，须回报结构失败，不在第三步修复",
+      "forbidden": ["改变手势、手的位置、手的轮廓、持物位置、指甲款式或饰品"]
+    },
+    "surface": {
+      "rule": "手背、掌面、指节和指尖的纹理及高光尺度不同；远景手部不能比脸部更锐利。",
+      "forbidden": ["统一手部磨皮", "夸张掌纹", "过度锐化指甲"]
+    },
+    "evidence_strength": "moderate"
+  },
+  "materials": {
+    "garment_execution": {
+      "evidence_basis": "原图可见结构与光学响应优先；通用物理约束用于执行，不作为未知纤维或隐蔽结构的证据",
+      "design_lock": ["版型与轮廓", "颜色分区", "图案位置", "覆盖与透明类别", "穿法和叠层", "主褶皱路径", "可见接缝与闭合件", "接触点与拉伸方向"],
+      "per_garment_record": ["region", "source_evidence", "confidence", "optical_response_class", "construction_lock", "fold_force_map", "texture_scale_and_direction", "edge_thickness_and_contact", "specular_and_transmission", "resolvable_scale", "failure_signs"],
+      "structure_before_texture": {
+        "rule": "先确保现有布面体积、主褶皱、层次、接触和边缘，再处理反射及可解析纹理；表面噪声不能代替结构。",
+        "stage_two": "按原图与第一步的有据转译形成厚度和受力，不新增构造。",
+        "stage_three": "冻结主褶皱、版型、接缝和轮廓，仅校正其现有表面的材质连续性；需改变这些内容则结构失败。"
+      },
+      "fold_force_map": {
+        "rule": "折面与褶皱必须能联系到可见的悬挂、重力、弯曲、压缩或接触牵拉；反射和阴影沿同一曲面变化。",
+        "reject": ["没有受力原因的等距平行褶皱", "纹理跨褶皱仍屏幕等距", "衣料和身体穿插", "通过堆皱改变服装体积"],
+        "do_not_invent": ["隐藏支撑", "新的抓握点", "衣物内部结构", "新的主褶皱或衣物运动"]
+      },
+      "texture_scale_and_direction": {
+        "rule": "布面纹理随透视缩短、曲率和可见形变连续变化；只有原有结构类别和成像尺度支持时才显示织纹或单纤维，远处、失焦及过曝区不补画。",
+        "reject": ["平铺噪声冒充纤维", "每件衣服同一种纹理", "焦外毛羽过锐", "摩尔纹被重复强化"],
+        "do_not_invent": ["可识别的新针织/斜纹/蕾丝/刺绣", "污渍", "磨损", "起球", "装饰毛边"]
+      },
+      "edge_thickness_and_contact": {
+        "rule": "现有领口、袖口、下摆、包边和叠层具有与材料厚度类别相容的边缘、遮挡及接触阴影；厚度不应导致款式、长度或覆盖改变。",
+        "reject": ["纸片边或融化边", "叠层互穿", "接缝消失", "边缘悬浮"],
+        "do_not_invent": ["缝份", "口袋", "新拉链", "新缝线", "内衬", "新扣件"]
+      },
+      "reflectance_and_transmission": {
+        "rule": "用可见的哑光、方向性柔光、光泽、不透明或薄透类别约束响应；高光随曲率、光源与方向变化，透射随已支持的叠层和折叠变化。不能从亮斑单独推断纤维身份。",
+        "conditional_examples": ["哑光布面可有宽而弱的反射，不等于完全无高光", "光泽织物可有较强高光，不因反光强就判塑料伪影", "罗纹或针织结构须先有证据，不能给所有衣服加编织", "皮革保留原哑光或光泽类别，聚合物服装可保留本来合理的塑料或橡胶反射", "金属扣随周围明暗反射，粗糙金属不必都有尖锐白斑"],
+        "protect": ["透明类别与覆盖", "图案与底色", "光源方向", "原有裁切高光"],
+        "reject": ["全部材料共享一块白色高光", "哑光织物变乳胶", "原光泽服装被统一哑光化", "新增透视衣物或皮肤轮廓"]
+      },
+      "acceptance_checks": ["设计及穿法未变", "主褶皱和受力连续", "现有边缘/接缝/层次可信", "纹理尺度与随形一致", "反射/透射类别有区别", "焦内外解析符合当前镜头"],
+      "unknown_material_action": "保持可见光学类别，纤维名称留空；不靠具体材料名、高清纤维、磨损或新图案填补未知。"
+    },
+    "cotton_fleece_and_matte_woven": {
+      "rule": "以漫反射为主，纤维绒面产生细小方向性阴影；褶皱和压缩区改变明暗但不形成塑料镜面。",
+      "diagnostic": ["整片布料像橡胶", "纤维纹理不随透视或褶皱变化"],
+      "repair": ["恢复低对比纤维和褶皱阴影", "保持原颜色、版型和缝线"]
+    },
+    "rib_knit_and_stretch_fabric": {
+      "rule": "罗纹或编织方向随表面曲率和拉伸连续变化；拉伸区间距变化，松弛区出现柔软褶皱。",
+      "diagnostic": ["纹理穿过褶皱仍等距", "身体曲面与织物高光不一致"],
+      "repair": ["校正局部纹理连续性和材质高光，不改变衣物结构"]
+    },
+    "sheer_or_glossy_woven": {
+      "rule": "薄透光泽织物同时表现叠层透明度、褶皱造成的密度变化和宽高光；纤维类别不明时只按可见光学响应修复。",
+      "diagnostic": ["透明度恒定", "像液体或塑料膜", "遮挡关系断裂"],
+      "repair": ["恢复叠层、褶皱和宽高光的同步变化"],
+      "forbidden": ["强行指定丝绸、尼龙、乳胶等类别", "改变颜色或透明设计"]
+    },
+    "leather": {
+      "rule": "保留输入图已有的哑光或亮面类别；宽高光随曲率变化，弯折处可有压缩褶皱和轻微表面纹理。",
+      "diagnostic": ["统一湿亮", "无曲率变化的高光", "灰塑料感"],
+      "repair": ["仅恢复高光宽度、弯折和局部粗糙度"],
+      "evidence_strength": "limited"
+    },
+    "metal": {
+      "rule": "金属反射受粗糙度、曲率和周围明暗影响；光滑金属可出现集中高光，粗糙金属可更宽更弱，不能把所有金属统一成白斑或灰塑料。",
+      "diagnostic": ["金属像灰塑料", "高光不随形状连续", "左右重复同一白斑"],
+      "repair": ["恢复局部反射连续性，不改变物体形状、颜色或数量"]
+    },
+    "glass_and_lenses": {
+      "rule": "反射、透射、遮挡和轻微折射同时存在；反射图形必须来自现有环境和光源。",
+      "diagnostic": ["镜片无透射", "反光穿过镜框", "添加不存在的灯条"],
+      "repair": ["修复局部边界、反射与遮挡连续性"],
+      "forbidden": ["新增环境反射内容", "改变镜框或玻璃形状"]
+    },
+    "material_separation": {
+      "rule": "皮肤、哑光织物、光泽织物、皮革、玻璃和金属必须以不同的高光宽度、暗部响应和微对比区分；同一光源不意味着同一种表面。",
+      "repair": ["只校准粗糙度和高光形状差异"],
+      "forbidden": ["重做颜色、款式、物体或光源"]
+    }
+  },
+  "lighting": {
+    "source_size_and_shadow_transition": {
+      "rule": "大光源产生较宽阴影过渡，小光源或直闪产生较硬边界；接触阴影在接触点最深并随距离变软。",
+      "repair": ["修复漂浮阴影、断裂阴影和与遮挡不符的边界"],
+      "forbidden": ["重新选择光源方向", "增加摄影棚灯", "统一柔光"]
+    },
+    "mixed_color_temperature": {
+      "rule": "不同光源可在不同朝向表面留下连续的色温差；变化必须跟随空间和受光方向，而不是随机色块。",
+      "repair": ["修复局部不连续色偏"],
+      "forbidden": ["把全图白平衡成一种色温", "改变服装、发色或肤色设计"]
+    },
+    "exposure_and_clipping": {
+      "rule": "强光、灯具、窗外或闪光区域可以真实裁切；裁切范围应服从曝光和曲率，不能凭空恢复不可见信息。",
+      "repair": ["修复贴片状或不连续裁切边缘"],
+      "forbidden": ["补画过曝窗景", "HDR式恢复所有高光和阴影", "改变整体曝光"]
+    },
+    "colored_light": {
+      "rule": "彩色光对皮肤、头发、织物和背景的影响强度因材质而异，但方向、遮挡和衰减必须一致。",
+      "repair": ["修复同一受光区内的局部断色或材质同质化"],
+      "forbidden": ["去除原有舞台色光", "把彩色光误当肤色错误"]
+    },
+    "highlight_rolloff": {
+      "rule": "从中间调到高光应保持连续；不同材质的滚降宽度不同，皮肤和布料通常比金属、玻璃更宽。",
+      "forbidden": ["所有材质共享同一白色高光", "统一压暗高光"]
+    }
+  },
+  "camera": {
+    "focus_plane": {
+      "rule": "清晰度由实际焦点、景深、距离、运动和像素覆盖共同决定；大景深或同一物距上的对象可以同时清楚，不能仅因全图清晰就判伪影。只拒绝明显违反深度/尺度关系的统一高频细节。",
+      "repair": ["仅降低与现有焦点或尺度关系矛盾的局部细节", "保持原焦点位置与景深量"],
+      "forbidden": ["把焦点移到另一部位", "新增浅景深"]
+    },
+    "depth_of_field": {
+      "rule": "景深随拍摄距离、焦距、光圈和物距连续变化；前后景模糊应有深度顺序，不是主体抠图边缘。",
+      "repair": ["修复边缘光圈状抠图、深度顺序错误和局部突变"],
+      "forbidden": ["改变原有背景模糊量", "重做焦外形状"]
+    },
+    "lens_sharpness_falloff": {
+      "rule": "锐度受焦平面、运动、镜头边缘和局部对比共同影响；高频细节不会在全图保持同强度。",
+      "repair": ["降低全局同锐度和锐化光晕"],
+      "forbidden": ["全局超清", "补造远处文字或纹理"]
+    },
+    "micro_contrast": {
+      "rule": "微对比应随材质、光线和焦点变化；皮肤、布料和背景不能都拥有同样硬的局部对比。",
+      "repair": ["局部降低过强边缘和过度清晰度"],
+      "forbidden": ["HDR", "clarity全局拉高", "统一柔化"]
+    },
+    "sensor_texture": {
+      "rule": "噪声在暗部和色彩通道中更明显，并受相机去噪和压缩影响；它是低幅随机结构，不是全图同粒径覆盖。",
+      "repair": ["移除规则噪点或颗粒贴图", "只有原图确有全无数字平滑问题时才保守恢复低幅噪声"],
+      "forbidden": ["胶片滤镜", "重颗粒", "把JPEG块和色带当真实噪声"],
+      "evidence_strength": "limited"
+    },
+    "motion_blur": {
+      "rule": "运动模糊方向与运动或相机移动一致，并在遮挡边界连续；静止主体可比移动背景更清晰。",
+      "repair": ["只修复明显不连续的局部模糊边界"],
+      "forbidden": ["清晰化原本运动模糊区域", "新增动态背景"]
+    },
+    "perspective": {
+      "rule": "人物、地面、建筑和物体共享同一相机投影；透视属于第二步图像的冻结内容。",
+      "forbidden": ["改焦距观感", "改机位", "拉长身体", "重排背景"]
+    }
+  },
+  "natural_irregularity": {
+    "facial_asymmetry": {
+      "rule": "只保留输入图已经存在的轻微几何和表情差异；不得移动五官、改变脸型或主动制造不对称。",
+      "allowed": ["恢复左右区域不同的表面反射或纹理强度，前提是原图有可见证据"],
+      "forbidden": ["改眉高、眼裂、鼻翼、嘴角或面颊体积来制造真人感"]
+    },
+    "skin_randomness": {
+      "rule": "真实微变化是空间相关、低对比、受部位与光线约束的，不是独立随机噪点。",
+      "forbidden": ["均匀散点", "新增雀斑、痣、痘或疤痕"]
+    },
+    "hair_randomness": {
+      "rule": "发组宽度和少量边缘碎发可不完全一致，但共同服从根部、重力、接触和原发流。",
+      "forbidden": ["均匀飞发", "改变发型体积"]
+    },
+    "fabric_randomness": {
+      "rule": "褶皱由重力、身体曲率、接缝和接触力产生；不对称必须有受力原因。",
+      "forbidden": ["随机添加褶皱", "改变服装版型或长度"]
+    },
+    "background_randomness": {
+      "rule": "真实场景可有不规则反射、污渍或纹理，但第三步不得新增这些内容；只修复明确重复或融合伪影。"
+    }
+  },
+  "common_ai_artifacts": [
+    {
+      "id": "generic_beauty_identity_drift",
+      "detect": ["修复后面部标志点、脸型或五官比例改变", "人物变成通用网红/广告脸"],
+      "action": "判定结果失败；不允许把身份变化当作去AI修复。",
+      "protect": ["全部身份与面部几何"]
+    },
+    {
+      "id": "global_skin_smoothing",
+      "detect": ["皮肤没有区域差异", "高光连续像塑料", "面部与四肢同一表面"],
+      "action": "只恢复局部粗糙度和反射差，不新增身份性细节。",
+      "protect": ["肤色", "脸型", "年龄", "软组织体积"]
+    },
+    {
+      "id": "fake_pore_overlay",
+      "detect": ["同尺度颗粒跨越不同部位", "失焦区域仍有同样毛孔", "纹理周期重复"],
+      "action": "移除重复贴图；只在焦内支持区域保留低对比非重复微纹理。",
+      "protect": ["原有皮肤标记"]
+    },
+    {
+      "id": "waxy_or_plastic_highlight",
+      "detect": ["高光不服从曲率", "整片皮肤同粗糙度", "白斑边界像贴纸"],
+      "action": "校正局部高光宽度和滚降，不重新布光。"
+    },
+    {
+      "id": "hair_shell_or_plastic_band",
+      "detect": ["头发像整体头套", "高光为等宽硬条", "暗部无发组层次"],
+      "action": "恢复连续发面、有限发组和原发流下的高光变化。",
+      "protect": ["轮廓", "分缝", "刘海", "发长", "颜色"]
+    },
+    {
+      "id": "repeated_hair_strands",
+      "detect": ["等距平行线", "复制曲线", "全头单丝同锐度"],
+      "action": "把重复单丝合并为发组并按焦平面衰减细节。"
+    },
+    {
+      "id": "synthetic_eyes",
+      "detect": ["巩膜纯白发光", "虹膜规则发光", "两眼复制高光", "眼睑无厚度"],
+      "action": "按现有光源与眼部几何修复局部光学表现。",
+      "protect": ["眼型", "眼距", "视线", "虹膜颜色", "表情"]
+    },
+    {
+      "id": "synthetic_teeth",
+      "detect": ["纯白牙板", "重复牙齿", "牙齿融合或穿过嘴唇"],
+      "action": "仅在清楚可见时做最小局部修复；证据不足则保持原样。",
+      "protect": ["开口", "笑容", "牙齿可见数量", "咬合"]
+    },
+    {
+      "id": "hand_topology_error",
+      "detect": ["融合指", "额外指段", "断裂关节", "重复指甲", "抓握悬浮"],
+      "action": "先分流：改变手指数、关节、轮廓或动作的修复属于STRUCTURAL_FAIL；仅表面边界错误且全部冻结项可保持时才局部修复。"
+    },
+    {
+      "id": "material_collapse",
+      "detect": ["皮肤、布料、皮革、玻璃和金属共享同一高光", "织物像塑料或液体"],
+      "action": "按materials.garment_execution保留各衣物设计与主褶皱，只校准有证据的纹理、粗糙度、高光、透射和微对比；不新增织物图案或纤维类别。",
+      "protect": ["颜色", "款式", "物体形状", "光向"]
+    },
+    {
+      "id": "boundary_fusion",
+      "detect": ["头发与皮肤粘连", "手与物体融化", "衣物边缘穿插", "饰品断裂"],
+      "action": "修复局部遮挡和边界连续性，不改变相对位置。"
+    },
+    {
+      "id": "uniform_global_sharpness",
+      "detect": ["眼睛、每根发丝、织物、鞋和背景同样清晰", "远景文字被异常锐化"],
+      "action": "按原焦平面和深度恢复连续锐度层级。",
+      "protect": ["焦点位置", "景深量", "构图"]
+    },
+    {
+      "id": "sharpening_halo_and_microcontrast",
+      "detect": ["轮廓两侧出现亮暗边", "毛孔、发丝和织物边缘同样硬"],
+      "action": "局部降低锐化光晕和过强微对比，不全局柔化。"
+    },
+    {
+      "id": "fake_grain_or_noise",
+      "detect": ["整图同粒径颗粒", "亮部暗部噪声完全一致", "规则彩色噪点"],
+      "action": "移除覆盖层；不要用另一种滤镜替代。"
+    },
+    {
+      "id": "inconsistent_reflection_or_shadow",
+      "detect": ["高光方向与光源不符", "接触点无阴影", "反射包含场景中不存在的物体"],
+      "action": "只修复局部连续性；不增加光源或场景元素。"
+    },
+    {
+      "id": "background_invention_or_repetition",
+      "detect": ["新增建筑、家具、车辆、植物或灯光", "重复窗户/物件", "伪文字", "背景透视漂移"],
+      "action": "判定结果失败；恢复第二步背景。仅允许局部去除明确生成伪影。"
+    },
+    {
+      "id": "relighting_or_exposure_rewrite",
+      "detect": ["主光方向改变", "阴影方向改变", "过曝区域被补景", "全图变成HDR"],
+      "action": "判定结果失败；保持原有光线和曝光关系。"
+    },
+    {
+      "id": "occlusion_completion",
+      "detect": ["补出原本遮挡的脸、身体、服装、手或背景", "把模糊信息具体化"],
+      "action": "判定结果失败；未知、遮挡、失焦和过曝信息必须保持未知。"
+    }
+  ],
+  "diagnostic_policy": {
+    "triage": ["NO_CHANGE_NEEDED", "LOCAL_REPAIRABLE", "STRUCTURAL_FAIL"],
+    "execution_outcomes": ["PASS", "NO_CHANGE_NEEDED", "STRUCTURAL_FAIL", "FAIL", "UNVERIFIED"],
+    "max_local_edit_calls": 2,
+    "structural_fail_action": "停止；报告结构问题，不能交给表面修复掩盖，需用户另行要求重做第二步。",
+    "no_change_action": "保护并返回原图，不强制生成。",
+    "capability_gate": "文本区域说明不是像素锁；检查工具是否支持参考编辑或真实蒙版，不编造参数；无法可靠局部修复时保留原图。",
+    "inspection_gate": "必须查看实际结果并对照最初输入；无法读取时记UNVERIFIED，不把工具成功或文件校验当视觉PASS。",
+    "statuses": ["correct", "slightly_ai_like", "moderately_ai_like", "strongly_ai_like", "uncertain_or_not_visible"],
+    "edit_gate": {
+      "correct": "禁止编辑",
+      "slightly_ai_like": "仅在局部、低风险且不会触碰冻结内容时修复",
+      "moderately_ai_like": "建立最小DELTA后局部修复",
+      "strongly_ai_like": "仍不得扩大到重绘人物或场景；不能安全修复则保留",
+      "uncertain_or_not_visible": "保护并保持原样"
+    },
+    "delta_required_fields": ["category", "status", "region", "observable_evidence", "profile_rule_paths", "repair_action", "max_change", "protected_attributes"],
+    "post_edit_rejection_conditions": [
+      "identity_or_facial_geometry_changed",
+      "body_or_pose_changed",
+      "composition_camera_or_crop_changed",
+      "hairstyle_or_clothing_design_changed",
+      "background_content_changed",
+      "lighting_direction_or_exposure_structure_changed",
+      "any_change_outside_repair_scope"
+    ]
+  },
+  "negative_constraints": [
+    "identity replacement",
+    "generic AI beauty face",
+    "influencer face",
+    "facial proportion redesign",
+    "body reshaping",
+    "pose change",
+    "composition change",
+    "camera or focal perspective change",
+    "hairstyle or hair-color redesign",
+    "clothing or accessory redesign",
+    "background reconstruction or added scene elements",
+    "uniform pores or global skin grain",
+    "plastic, waxy, porcelain or airbrushed skin",
+    "over-sharpened hair, skin or fabric",
+    "uniform sharpness",
+    "fake film grain, HDR, vignette or chromatic-aberration filter",
+    "invented teeth, skin marks, flyaways, reflections, text or objects",
+    "completion of occluded, blurred, clipped or unknown content"
+  ]
+}

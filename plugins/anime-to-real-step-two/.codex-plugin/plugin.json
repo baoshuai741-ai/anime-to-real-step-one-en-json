@@ -1,6 +1,6 @@
 {
   "name": "anime-to-real-step-two",
-  "version": "0.1.0+codex.20260929041537",
+  "version": "0.1.0+codex.20260930073531",
   "description": "Step two: generate and verify a live-action character image from the same current reference and approved Step One JSON.",
   "author": {
     "name": "Personal workflow"

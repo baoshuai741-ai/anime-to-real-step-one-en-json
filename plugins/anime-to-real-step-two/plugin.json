@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "anime-to-real-step-two",
-  "version": "0.1.0+codex.20260929041537",
+  "version": "0.1.0+codex.20260930073531",
   "description": "Generate and verify a photorealistic live-action character image from the same current artwork and its complete approved Step One JSON.",
   "author": {
     "name": "baoshuai741-ai"

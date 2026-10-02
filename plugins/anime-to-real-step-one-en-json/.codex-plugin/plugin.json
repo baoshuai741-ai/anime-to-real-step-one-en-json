@@ -1,6 +1,6 @@
 {
   "name": "anime-to-real-step-one-en-json",
-  "version": "0.1.0+codex.20260929041537",
+  "version": "0.1.0+codex.20260930073531",
   "description": "Step one: extract strict visual evidence, uncertainty boundaries, and anatomically constrained live-action mappings from the current reference into isolated JSON.",
   "author": {
     "name": "Personal workflow"
